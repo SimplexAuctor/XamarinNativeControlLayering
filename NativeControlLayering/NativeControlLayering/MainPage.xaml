@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:NativeControlLayering"
+             x:Class="NativeControlLayering.MainPage">
+
+  <AbsoluteLayout x:Name="layout">
+    <local:VideoPlayer AbsoluteLayout.LayoutBounds="0,0,0.6,0.6" AbsoluteLayout.LayoutFlags="All" x:Name="v1"/>
+    <local:VideoPlayer AbsoluteLayout.LayoutBounds="1,0,0.6,0.6" AbsoluteLayout.LayoutFlags="All" x:Name="v2"/>
+
+    <!-- This works, but native controls do not. -->
+    <!--<Button Text="Video1" AbsoluteLayout.LayoutBounds="0,0,0.6,0.6" AbsoluteLayout.LayoutFlags="All" x:Name="v1"/>
+    <Button Text="Video2" AbsoluteLayout.LayoutBounds="1,0,0.6,0.6" AbsoluteLayout.LayoutFlags="All" x:Name="v2"/>-->
+
+    
+    <Button Text="Swap" Clicked="SwapLowerChild" AbsoluteLayout.LayoutBounds="0,0,0.1,0.1" AbsoluteLayout.LayoutFlags="All"/>
+
+    <local:InvalidatableAbsoluteLayout x:Name="l2" AbsoluteLayout.LayoutBounds="0,1,1,0.6" AbsoluteLayout.LayoutFlags="All">
+      <local:NCHVideoPlayer AbsoluteLayout.LayoutBounds="0,1,0.6,1" AbsoluteLayout.LayoutFlags="All" x:Name="v3"/>
+      <local:NCHVideoPlayer AbsoluteLayout.LayoutBounds="1,1,0.6,1" AbsoluteLayout.LayoutFlags="All" x:Name="v4"/>
+    </local:InvalidatableAbsoluteLayout>
+
+    <Button Text="Swap" Clicked="SwapNCHLowerChild" AbsoluteLayout.LayoutBounds="0,1,0.1,0.1" AbsoluteLayout.LayoutFlags="All"/>
+    <Button Text="Swap Brute" Clicked="SwapNCHAndroidStuff" AbsoluteLayout.LayoutBounds="0,.9,0.1,0.1" AbsoluteLayout.LayoutFlags="All"/>
+    
+  </AbsoluteLayout>
+</ContentPage>
